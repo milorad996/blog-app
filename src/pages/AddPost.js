@@ -45,12 +45,14 @@ function AddPost() {
                     width: 400,
                     marginLeft: 15,
                 }}>
-                <input type='text' value={newPost.title} placeholder='Title' onChange={({ target }) =>
-                    setNewPost({ ...newPost, title: target.value })
-                } />
-                <input type='text' value={newPost.text} placeholder='Text' onChange={({ target }) =>
-                    setNewPost({ ...newPost, text: target.value })
-                } />
+                <input required minLength='2'
+                    type='text' value={newPost.title} placeholder='Title' onChange={({ target }) =>
+                        setNewPost({ ...newPost, title: target.value })
+                    } />
+                <input required maxLength='300'
+                    type='text' value={newPost.text} placeholder='Text' onChange={({ target }) =>
+                        setNewPost({ ...newPost, text: target.value })
+                    } />
                 <button type="submit" class="btn btn-outline-success">Add</button>
                 <button type="button" onClick={reset} class="btn btn-outline-primary">Reset</button>
 
