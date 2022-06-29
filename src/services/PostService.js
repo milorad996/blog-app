@@ -18,6 +18,19 @@ class PostService {
 
         return [];
     }
+
+
+    async get(id) {
+        try {
+            const { data } = await this.client.get(`posts/${id}`);
+
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+
+        return {};
+    }
 }
 
 export default new PostService();

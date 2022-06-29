@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AppPosts from './pages/AppPosts';
+import SinglePost from './pages/SinglePost';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <Switch>
           <Route exact path='/posts'>
             <AppPosts />
+          </Route>
+          <Route exact path='/posts/:id'>
+            <SinglePost />
           </Route>
 
         </Switch>
