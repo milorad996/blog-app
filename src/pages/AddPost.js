@@ -27,6 +27,12 @@ function AddPost() {
         history.push('/posts');
     };
 
+    const reset = () => {
+        setNewPost({
+            title: '',
+            text: '',
+        })
+    }
     return (
         <div class="container">
 
@@ -46,6 +52,7 @@ function AddPost() {
                     setNewPost({ ...newPost, text: target.value })
                 } />
                 <button type="submit" class="btn btn-outline-success">Add</button>
+                <button type="button" onClick={reset} class="btn btn-outline-primary">Reset</button>
 
             </form>
 
