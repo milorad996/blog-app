@@ -26,6 +26,14 @@ function AppPosts() {
         history.push(`edit/${id}`);
     };
 
+    const deletePost = async (id) => {
+        const data = await PostService.delete(id)
+
+        if (data) {
+            setPosts(posts.filter((post => post.id !== id)))
+        }
+    }
+
     return (
         <div>
             <h1>AppPosts</h1>
@@ -37,6 +45,7 @@ function AppPosts() {
                         <span>{post.title}</span>
                         <Link to={`/posts/${post.id}`}>View Post</Link>
                         <button onClick={() => edit(post.id)}>Edit</button>
+                        <button onClick={() => deletePost(post.id)}>Delete</button>
 
                     </li>
                 )}
