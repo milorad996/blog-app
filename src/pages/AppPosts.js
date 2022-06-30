@@ -34,6 +34,8 @@ function AppPosts() {
         }
     }
 
+
+
     return (
         <div>
             <h1>AppPosts</h1>
@@ -43,9 +45,12 @@ function AppPosts() {
                 {posts.map((post) =>
                     <li key={post.id}>
                         <span>{post.title}</span>
+                        <h3>Number of comments:                         <span>{post.comments.length}</span>
+                        </h3>
                         <Link to={`/posts/${post.id}`}>View Post</Link>
                         <button onClick={() => edit(post.id)}>Edit</button>
                         <button onClick={() => deletePost(post.id)}>Delete</button>
+
 
                     </li>
                 )}
