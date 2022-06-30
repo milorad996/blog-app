@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import PostService from "../services/PostService";
 
 
@@ -8,6 +8,7 @@ import PostService from "../services/PostService";
 
 
 function AddPost() {
+    const { id } = useParams();
 
     const history = useHistory();
 
@@ -17,15 +18,7 @@ function AddPost() {
 
     });
 
-    const addPost = async (e) => {
-        e.preventDefault();
 
-
-        await PostService.add(newPost);
-
-
-        history.push('/posts');
-    };
 
     const reset = () => {
         setNewPost({
@@ -33,8 +26,20 @@ function AddPost() {
             text: '',
         })
     }
+
+    const addPost = async (e) => {
+        e.preventDefault();
+        if (id) {
+            await PostService.edit(id, newPost);
+        } else {
+            await PostService.add(newPost);
+        }
+
+        history.push('/posts');
+    };
+
     return (
-        <div class="container">
+        <div className="container">
 
             <h1>Add Post</h1>
 
@@ -53,8 +58,8 @@ function AddPost() {
                     type='text' value={newPost.text} placeholder='Text' onChange={({ target }) =>
                         setNewPost({ ...newPost, text: target.value })
                     } />
-                <button type="submit" class="btn btn-outline-success">Add</button>
-                <button type="button" onClick={reset} class="btn btn-outline-primary">Reset</button>
+                <button type="submit" className="btn btn-outline-success">{id ? 'Edit' : 'Add'}</button>
+                <button type="button" onClick={reset} className="btn btn-outline-primary">Reset</button>
 
             </form>
 

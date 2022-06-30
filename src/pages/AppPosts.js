@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PostService from "../services/PostService";
 
 
@@ -7,6 +7,8 @@ import PostService from "../services/PostService";
 
 
 function AppPosts() {
+
+    const history = useHistory();
 
     const [posts, setPosts] = useState([]);
 
@@ -20,6 +22,10 @@ function AppPosts() {
         getPosts();
     }, []);
 
+    const edit = (id) => {
+        history.push(`edit/${id}`);
+    };
+
     return (
         <div>
             <h1>AppPosts</h1>
@@ -30,6 +36,8 @@ function AppPosts() {
                     <li key={post.id}>
                         <span>{post.title}</span>
                         <Link to={`/posts/${post.id}`}>View Post</Link>
+                        <button onClick={() => edit(post.id)}>Edit</button>
+
                     </li>
                 )}
             </ul>

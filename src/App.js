@@ -24,10 +24,13 @@ function App() {
           <Route exact path='/posts'>
             <AppPosts />
           </Route>
+          <Route exact path='/add'>
+            <AddPost />
+          </Route>
           <Route exact path='/posts/:id'>
             <SinglePost />
           </Route>
-          <Route exact path='/add'>
+          <Route exact path='/edit/:id'>
             <AddPost />
           </Route>
 

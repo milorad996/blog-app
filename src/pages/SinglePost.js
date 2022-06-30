@@ -5,21 +5,17 @@ import PostService from "../services/PostService";
 
 
 function SinglePost() {
-    const history = useHistory();
+
 
     const { id } = useParams();
 
-    const [newPost, setNewPost] = useState({
-        title: '',
-        text: '',
-
-    });
+    const [post, setPost] = useState([])
 
     useEffect(() => {
         const fetchPost = async () => {
-            const { id: _, ...restData } = await PostService.get(id);
+            const { ...restData } = await PostService.get(id);
 
-            setNewPost({ ...restData });
+            setPost({ ...restData });
         };
 
         if (id) {
@@ -28,8 +24,8 @@ function SinglePost() {
     }, [id]);
     return (
         <div>
-            <p>Title: {newPost.title}</p>
-            <p>Text: {newPost.text}</p>
+            <p>Title: {post.title}</p>
+            <p>Text: {post.text}</p>
         </div>
     )
 }
